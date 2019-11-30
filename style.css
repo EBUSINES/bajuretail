@@ -1,0 +1,9 @@
+h1.merah{
+    color: red;
+}
+.footer{
+    width: auto;
+    height: 200px;
+    background-color: #011936;
+    position: relative;
+}
