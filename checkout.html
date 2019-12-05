@@ -55,8 +55,8 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col col-md-3">
-                            <label for="exampleFormControlInput1">Jumlah</label>
-                            <input type="number" min="1" class="form-control" id="exampleFormControlInput1">
+                            <label for="exampleFormControlInput1">Jumlah Baju</label>
+                            <input type="number" min="1" class="form-control" id="inputbaju">
                         </div>
                     </div>
                 </div>
@@ -92,14 +92,15 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Keterangan</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea class="form-control" id="keterangan" rows="3"></textarea>
                 </div>
                 <div class="form-group mb-auto">
+                    <button class="btn bnt-sm btn-success" onclick="add()"><i class="fa fa-plus"></i> Add</button>
                     <button class="btn bnt-sm btn-primary"><i class="fa fa-shopping-cart"></i> Checkout</button>
                 </div>
             </form>
         </div>
-        <div class="col-12 col-md-3 mt-4 ml-auto">
+        <div class="col-12 col-md-3 ml-auto">
             <ul class="list-unstyled">
                 <li class="media mb-2">
                     <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
@@ -161,5 +162,4 @@
          integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
      </script>
  </body>
-
  </html>
