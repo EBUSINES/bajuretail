@@ -15,7 +15,7 @@
 <body>
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
         <div class="container">
-                <a class="navbar-brand" href="#">BRetail<?php echo $nama; ></a>
+                <a class="navbar-brand" href="#">BRetail<?php echo $_SESSION["baju"]; ?></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>

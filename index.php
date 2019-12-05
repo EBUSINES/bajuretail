@@ -1,5 +1,7 @@
 
+<?php session_start();
 
+?>
 <!doctype html>
  <html lang="en">
  <head> 
@@ -287,9 +289,7 @@
   <div class="footer">
   </div>
 </div>
-<?php 
-    $_SESSION["baju"] = "baju";
-?>
+<?php $_SESSION["baju"] = $_POST[""]; ?>
      <!-- Optional JavaScript -->
      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
