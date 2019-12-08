@@ -1,3 +1,6 @@
+ <?php 
+ include "auth/connect.php";
+ ?>
  <!doctype html>
  <html lang="en">
  <head> 
@@ -7,12 +10,12 @@
      <!-- Bootstrap CSS -->
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
          <script src="https://use.fontawesome.com/29b20f302a.js"></script>
-      <link rel="stylesheet" href="/bajuretail/style.css">
+      <link rel="stylesheet" href="<?= BASE_PATH ?>">
      <title>BajuRetailku | Online Shop</title>
  </head>
 <body>
 <div class="container">
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
                 <a class="navbar-brand" href="/bajuretail/index.php">BRetail</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,7 +30,7 @@
                       <a class="nav-link" href="/bajuretail/view/checkout.php">Diskon</a>
                     </li>
                     <li class="nav-item mr-5">
-                      <a class="nav-link" href="#">Kategori</a>
+                      <a class="nav-link" href="/bajuretail/kategori.php">Kategori</a>
                     </li>
                     <li class="nav-item mr-5">
                       <a class="nav-link" href="#">Contact</a>
