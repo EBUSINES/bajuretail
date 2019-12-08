@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2019 at 05:20 PM
+-- Generation Time: Dec 08, 2019 at 11:26 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -47,14 +47,38 @@ INSERT INTO `customer` (`id_cust`, `nama_depan`, `nama_belakang`, `nohp`, `alama
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `kategori`
+--
+
+CREATE TABLE `kategori` (
+  `id_kategori` int(11) NOT NULL,
+  `nama_kategori` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `kategori`
+--
+
+INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
+(1, 'Jeans'),
+(2, 'Hoodie'),
+(3, 'Slingbag'),
+(4, 'Celana Chinos');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `produk`
 --
 
 CREATE TABLE `produk` (
   `id_produk` int(11) NOT NULL,
+  `id_kategori` int(11) NOT NULL,
   `nama_produk` varchar(30) NOT NULL,
+  `deskripsi` text NOT NULL,
   `size_produk` varchar(11) NOT NULL,
   `warna_produk` varchar(10) NOT NULL,
+  `gambar_product` blob NOT NULL,
   `jumlah_produk` int(11) NOT NULL,
   `harga` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -63,11 +87,14 @@ CREATE TABLE `produk` (
 -- Dumping data for table `produk`
 --
 
-INSERT INTO `produk` (`id_produk`, `nama_produk`, `size_produk`, `warna_produk`, `jumlah_produk`, `harga`) VALUES
-(1, 'Sweater H&M', 'L', 'Pink', 100, 300000),
-(2, 'Hoodie H&M', 'XL', 'Navy', 0, 300000),
-(3, 'Jeans H&M', 'L', 'Black', 120, 450000),
-(4, 'Celana Chinos', 'XL', 'Green', 20, 250000);
+INSERT INTO `produk` (`id_produk`, `id_kategori`, `nama_produk`, `deskripsi`, `size_produk`, `warna_produk`, `gambar_product`, `jumlah_produk`, `harga`) VALUES
+(1, 0, 'Sweater H&M', '', 'L', 'Pink', '', 100, 300000),
+(2, 0, 'Hoodie H&M', '', 'XL', 'Navy', '', 0, 300000),
+(3, 0, 'Jeans H&M', '', 'L', 'Black', '', 120, 450000),
+(4, 0, 'Celana Chinos', '', 'XL', 'Green', '', 20, 250000),
+(5, 0, 'Hoodie Bape Dark', '', 'L', 'Black', '', 50, 2500000),
+(6, 0, 'Jeans Streech', '', 'XL', 'Black', '', 78, 500000),
+(7, 0, 'Bape Slingbag', '', 'S', 'White', '', 40, 450000);
 
 -- --------------------------------------------------------
 
@@ -91,6 +118,12 @@ CREATE TABLE `transaksi` (
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`id_cust`);
+
+--
+-- Indexes for table `kategori`
+--
+ALTER TABLE `kategori`
+  ADD PRIMARY KEY (`id_kategori`);
 
 --
 -- Indexes for table `produk`
@@ -117,10 +150,16 @@ ALTER TABLE `customer`
   MODIFY `id_cust` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `kategori`
+--
+ALTER TABLE `kategori`
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `transaksi`
