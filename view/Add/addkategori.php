@@ -31,7 +31,7 @@
         include_once("config.php");
 
         // Insert user data into table
-        $result = mysqli_query($mysqli, "INSERT INTO kategori(nama_kategori) VALUES('$nama_depan' , '$nama_belakang' , '$nohp' , '$alamat')");
+        $result = mysqli_query($mysqli, "INSERT INTO kategori(nama_kategori) VALUES('$nama_kategori')");
 
         // Show message when user added
         echo "User added successfully. <a href='index.php'>View Users</a>";
