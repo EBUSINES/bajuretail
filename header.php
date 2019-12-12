@@ -10,14 +10,14 @@
      <!-- Bootstrap CSS -->
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
          <script src="https://use.fontawesome.com/29b20f302a.js"></script>
-      <link rel="stylesheet" href="<?= BASE_PATH ?>">
+      <link rel="stylesheet" href="<?= BASE_CSS ?>">
      <title>BajuRetailku | Online Shop</title>
  </head>
 <body>
 <div class="container">
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-                <a class="navbar-brand" href="/bajuretail/index.php">BRetail</a>
+                <a class="navbar-brand" href="<?= BASE_URL ?>">BRetail</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
@@ -27,13 +27,13 @@
                       <a class="nav-link" href="/bajuretail/view/payment.php">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item mr-5">
-                      <a class="nav-link" href="/bajuretail/view/checkout.php">Diskon</a>
+                      <a class="nav-link" href="<?= BASE_URL.'/diskon.php' ?>">Diskon</a>
                     </li>
                     <li class="nav-item mr-5">
-                      <a class="nav-link" href="/bajuretail/kategori.php">Kategori</a>
+                      <a class="nav-link" href="<?= BASE_URL.'/kategori.php' ?>">Kategori</a>
                     </li>
                     <li class="nav-item mr-5">
-                      <a class="nav-link" href="#">Contact</a>
+                      <a class="nav-link" href="<?= BASE_URL.'/how-to-pay.php' ?>">Cara Pembelian</a>
                     </li>
                   </ul>
                 </div>
