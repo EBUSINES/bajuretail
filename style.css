@@ -30,7 +30,7 @@ span.badge.badge-primary.sizeku{
 .logoku{
     opacity: 0.7;
 }
-i{
+.footer i{
     margin-right: 20px;
 }
 .container.kat{
@@ -58,4 +58,20 @@ h1.best-selling{
     text-transform: capitalize;
     margin-bottom: 30px;
     letter-spacing: 2px;
+}
+h1.order{
+    text-align: left;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.container.order{
+    margin-top: 40px;
+}
+h2.pay{
+    text-align: center;
+    font-weight: 500;
+}
+.container.thanks{
+    margin-top: 130px;
+    margin-bottom: 90px;
 }
