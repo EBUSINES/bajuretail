@@ -1,16 +1,16 @@
 <?php 
 session_start();
 include '../header.php';
-?>
-<div class="container" style="margin-top:8%;">
-    <!-- <div class="row"> -->
-        <?php 
-        require '../Item.php';
+require '../Item.php';
+if ($_GET['id']) {
+    header("location: order.php");
+    // menangani URL 
+}
 
-        // if (!$_GET['id']) {
-        //     header("location: ../index.php");
-        //     // jika tidak ada id yang di passing
-        // }
+?>
+<div class="container order">
+    <h1 class="order">Order Detail</h1>
+        <?php 
         if (isset($_GET['id']) && !isset($_POST['update']) ) {
             $id     = $_GET['id'];
             $sql    = "SELECT * FROM `produk` WHERE id_produk = $id";
@@ -57,55 +57,59 @@ include '../header.php';
             $_SESSION['cart'] = $cart;
         }
         ?>
-        <form action="POST">
+        <form action="" method="post">
             <table class="table">
-            <thead>
-                <tr>
-                <th scope="col">id baramg</th>
-                <th scope="col">Nama brg</th>
-                <th scope="col">harga</th>
-                <th scope="col">jumlah</th>
-                <th scope="col">subtotal</th>
-                <th scope="col">aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nama Barang</th>
+                        <th scope="col">Harga</th>
+                        <th scope="col">Jumlah</th>
+                        <th scope="col">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
                 <?php 
-                $cart = unserialize(serialize($_SESSION['cart']));
-                $s = 0;
-                $index = 0;
-                for($i=0; $i<count($cart); $i++){
-                    $s += $cart[$i]->harga * $cart[$i]->jumlah_produk;
-                ?>	
-                <tr>
-                <th scope="row">#</th>
-                <td> <?php echo $cart[$i]->nama_produk; ?></td> 
-                <td> <?php echo $cart[$i]->harga; ?></td> 
-                <td> <?php echo $cart[$i]->jumlah_produk; ?></td> 
-                <td> <?php echo $cart[$i]->nama_produk; ?></td> 
-                <td><a href="<?= BASE_URL ?>/view/order.php?index=<?php echo $index; ?>" onclick="return confirm('Are you sure?')" >Delete</a></td>
-                </tr>
-                <?php 
-                    $index++;
-                } ?>
-                <tr>
- 		<td colspan="5" style="text-align:right; font-weight:bold">Sum 
-         <input id="saveimg" type="image" src="images/save.png" name="update" alt="Save Button">
-         <input type="hidden" name="update">
- 		</td>
- 		<td> <?php echo $s; ?> </td>
- 	</tr>
-            </tbody>
+                    $cart = unserialize(serialize($_SESSION['cart']));
+                    $total = 0;
+                    $index = 0;
+                    $nom = 1;
+                    for($i=0; $i<count($cart); $i++){
+                        $total += $cart[$i]->harga * $cart[$i]->jumlah_produk;
+                    ?>	
+                    <tr>
+                        <th scope="row"><?= $nom++; ?></th>
+                        <td><?php echo $cart[$i]->nama_produk; ?></td>
+                        <td><?php echo $cart[$i]->harga; ?></td>
+                        <td><?php echo $cart[$i]->jumlah_produk; ?></td>
+                        <td>
+                            <a href="<?= BASE_URL ?>/view/order.php?index=<?php echo $index; ?>" class="badge badge-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash fa-1"></i> Hapus</a>
+                        </td>
+                        <?php 
+                        $index++;
+                        } ?>
+                    </tr>
+                    <?php
+                    if ($total == 0) { ?>
+                    <tr>
+                        <td colspan="1"></td>
+                        <th colspan="3"><i>Tidak ada item , silahkan belanja terlebih dahulu</i></th>
+                    </tr>
+                    <?php }else {?>
+                    <tr>
+                        <td colspan="1"></td>
+                        <th colspan="3">Total Pembayaran</th>
+                        <td><b>Rp. <?php echo $total; ?></b></td>
+                    </tr>
+                    <?php }
+                    ?>
+                    
+                </tbody>
             </table>
+            <a class="btn btn-info" href="<?= BASE_URL ?>" role="button"><i class="fa fa-arrow-left"></i> Continue Shopping</a>
+            <a class="btn btn-success" href="<?= BASE_URL ?>/view/payment.php" role="button">Payment <i class="fa fa-arrow-right"></i></a>
         </form>
-    <!-- </div> -->
 </div>
-<?php 
-if(isset($_GET["id"]) && isset($_GET["index"])){
- header('Location: order.php');
-} 
-?>
 <?php 
 include '../footer.php';
 ?>
