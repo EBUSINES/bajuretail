@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 08, 2019 at 11:26 AM
+-- Generation Time: Dec 12, 2019 at 04:59 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -63,7 +63,11 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 (1, 'Jeans'),
 (2, 'Hoodie'),
 (3, 'Slingbag'),
-(4, 'Celana Chinos');
+(4, 'Celana Chinos'),
+(5, 'Bape'),
+(6, 'Sweater'),
+(7, 'Topi'),
+(8, 'Kemeja');
 
 -- --------------------------------------------------------
 
@@ -88,13 +92,13 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`id_produk`, `id_kategori`, `nama_produk`, `deskripsi`, `size_produk`, `warna_produk`, `gambar_product`, `jumlah_produk`, `harga`) VALUES
-(1, 0, 'Sweater H&M', '', 'L', 'Pink', '', 100, 300000),
-(2, 0, 'Hoodie H&M', '', 'XL', 'Navy', '', 0, 300000),
-(3, 0, 'Jeans H&M', '', 'L', 'Black', '', 120, 450000),
-(4, 0, 'Celana Chinos', '', 'XL', 'Green', '', 20, 250000),
-(5, 0, 'Hoodie Bape Dark', '', 'L', 'Black', '', 50, 2500000),
-(6, 0, 'Jeans Streech', '', 'XL', 'Black', '', 78, 500000),
-(7, 0, 'Bape Slingbag', '', 'S', 'White', '', 40, 450000);
+(1, 2, 'Sweater H&M', '', 'L,XL,S', 'Pink', '', 100, 300000),
+(2, 1, 'Hoodie H&M', '', 'M,L,XL,XXL', 'Navy', '', 0, 300000),
+(3, 1, 'Jeans H&M', '', 'L', 'Black', '', 120, 450000),
+(4, 2, 'Celana Chinos', '', 'L,XL,XXL', 'Green', '', 20, 250000),
+(5, 3, 'Hoodie Bape Dark', '', 'XL,M', 'Black', '', 50, 2500000),
+(6, 2, 'Jeans Streech', '', 'XL', 'Black', '', 0, 500000),
+(7, 4, 'Bape Slingbag', '', 'S', 'White', '', 12, 450000);
 
 -- --------------------------------------------------------
 
@@ -106,8 +110,21 @@ CREATE TABLE `transaksi` (
   `id_transaksi` int(11) NOT NULL,
   `id_produk` int(11) NOT NULL,
   `id_customer` int(11) NOT NULL,
-  `tgl_transaksi` datetime NOT NULL
+  `tgl_transaksi` datetime NOT NULL,
+  `total` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `transaksi`
+--
+
+INSERT INTO `transaksi` (`id_transaksi`, `id_produk`, `id_customer`, `tgl_transaksi`, `total`) VALUES
+(1, 3, 1, '2019-12-11 16:11:18', 500000),
+(2, 3, 2, '2019-12-11 16:11:18', 450000),
+(3, 2, 1, '2019-12-11 16:11:18', 300000),
+(4, 2, 1, '2019-12-11 16:11:18', 300000),
+(5, 7, 2, '2019-12-11 16:11:18', 450000),
+(6, 1, 1, '2019-12-12 06:20:24', 300000);
 
 --
 -- Indexes for dumped tables
@@ -129,7 +146,8 @@ ALTER TABLE `kategori`
 -- Indexes for table `produk`
 --
 ALTER TABLE `produk`
-  ADD PRIMARY KEY (`id_produk`);
+  ADD PRIMARY KEY (`id_produk`),
+  ADD KEY `FK_PRODUK_KAT` (`id_kategori`);
 
 --
 -- Indexes for table `transaksi`
@@ -153,7 +171,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `produk`
@@ -165,11 +183,17 @@ ALTER TABLE `produk`
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `produk`
+--
+ALTER TABLE `produk`
+  ADD CONSTRAINT `FK_PRODUK_KAT` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `transaksi`
