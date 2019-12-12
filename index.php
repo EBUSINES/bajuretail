@@ -32,7 +32,7 @@ include "header.php";
                     <?php 
                     if ($list['jumlah_produk'] > 0) { ?>
                       
-                    <a class="btn btn-primary btn-sm btn-block text-decoration-none text-uppercase" href="<?= BASE_URL ?>/view/order.php?id=<?= $list['id_produk'] ?>&action=add">Order Now</a>
+                    <a class="btn btn-primary btn-sm btn-block text-decoration-none text-uppercase" href="<?= BASE_URL ?>/view/order.php?id=<?= $list['id_produk']?>">Order Now</a>
                     <?php }else{ ?>
   
                     <a class="btn btn-danger btn-sm disabled btn-block" tabindex="-1" role="button" aria-disabled="true">Soldout</a>
@@ -70,7 +70,7 @@ include "header.php";
                     <?php 
                     if ($list['jumlah_produk'] > 0) { ?>
                       
-                    <a class="btn btn-primary btn-sm btn-block text-decoration-none text-uppercase" href="<?= BASE_URL ?>/view/order.php?id=<?= $list['id_produk'] ?>&action=add">Order Now</a>
+                    <a class="btn btn-primary btn-sm btn-block text-decoration-none text-uppercase" href="<?= BASE_URL ?>/view/order.php?id=<?= $list['id_produk'] ?>">Order Now</a>
                     <?php }else{ ?>
   
                     <a class="btn btn-danger btn-sm disabled btn-block" tabindex="-1" role="button" aria-disabled="true">Soldout</a>
