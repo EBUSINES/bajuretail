@@ -32,7 +32,7 @@ include "header.php";
                     <?php 
                     if ($list['jumlah_produk'] > 0) { ?>
                       
-                    <a class="btn btn-primary btn-sm btn-block text-decoration-none text-uppercase" href="view/order.php?id=<?= $list['id_produk'] ?>">Order Now</a>
+                    <a class="btn btn-primary btn-sm btn-block text-decoration-none text-uppercase" href="<?= BASE_URL ?>/view/order.php?id=<?= $list['id_produk'] ?>&action=add">Order Now</a>
                     <?php }else{ ?>
   
                     <a class="btn btn-danger btn-sm disabled btn-block" tabindex="-1" role="button" aria-disabled="true">Soldout</a>
@@ -51,26 +51,26 @@ include "header.php";
           <?php 
           $sql    = "SELECT * FROM `produk` WHERE id_produk >= 4 AND id_produk <= 6";
           $query  = mysqli_query($conn,$sql);
-          while ($list = mysqli_fetch_object($query)) { ?>
+          while ($list = mysqli_fetch_array($query)) { ?>
           <div class="col mb-4">
             <div class="card h-100">
               <img
                 src="https://images.unsplash.com/photo-1514315384763-ba401779410f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
                 class="card-img-top" style="width:auto;height:420px;" alt="...">
               <div class="card-body">
-                <h5 class="card-title"><?= $list->nama_produk ?>
+                <h5 class="card-title"><?= $list['nama_produk'] ?>
                     <?php 
-                    if ($list->jumlah_produk > 0) { ?>
-                    <span class="badge badge-primary ml-3"><?= $list->jumlah_produk ?></span></h5>
+                    if ($list['jumlah_produk'] > 0) { ?>
+                    <span class="badge badge-primary ml-3"><?= $list['jumlah_produk'] ?></span></h5>
                     <?php }else{ ?>
   
-                    <span class="badge badge-danger ml-3"><?= $list->jumlah_produk ?></span></h5>
+                    <span class="badge badge-danger ml-3"><?= $list['jumlah_produk'] ?></span></h5>
                     <?php }?>
 
                     <?php 
-                    if ($list->jumlah_produk > 0) { ?>
+                    if ($list['jumlah_produk'] > 0) { ?>
                       
-                    <a class="btn btn-primary btn-sm btn-block text-decoration-none text-uppercase" href="view/order.php?id=<?= $list->id_produk ?>">Order Now</a>
+                    <a class="btn btn-primary btn-sm btn-block text-decoration-none text-uppercase" href="<?= BASE_URL ?>/view/order.php?id=<?= $list['id_produk'] ?>&action=add">Order Now</a>
                     <?php }else{ ?>
   
                     <a class="btn btn-danger btn-sm disabled btn-block" tabindex="-1" role="button" aria-disabled="true">Soldout</a>
