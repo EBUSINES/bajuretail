@@ -9,6 +9,7 @@
             <p><i class="fa fa-phone"></i>0812-4332-2991</p>
             <p><i class="fa fa-envelope"></i>helpme@bajuku.com</p>
             <p><i class="fa fa-clock-o"></i>07.30 - 17.00</p>
+            <p><i class="fa fa-globe"></i>www.bajuretailku.com</p>
         </div>
         <div class="col-6 col-md-3">
             <form>
