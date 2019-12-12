@@ -17,26 +17,23 @@
 <div class="container">
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-                <a class="navbar-brand" href="<?= BASE_URL ?>">BRetail</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                  <ul class="navbar-nav ml-auto">
-                    <li class="nav-item mr-5 active">
-                      <a class="nav-link" href="/bajuretail/view/payment.php">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item mr-5">
-                      <a class="nav-link" href="<?= BASE_URL.'/diskon.php' ?>">Diskon</a>
-                    </li>
-                    <li class="nav-item mr-5">
-                      <a class="nav-link" href="<?= BASE_URL.'/kategori.php' ?>">Kategori</a>
-                    </li>
-                    <li class="nav-item mr-5">
-                      <a class="nav-link" href="<?= BASE_URL.'/how-to-pay.php' ?>">Cara Pembelian</a>
-                    </li>
-                  </ul>
-                </div>
-                </div>
+          <a class="navbar-brand" href="<?= BASE_URL ?>">BajuRetailKu</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item mr-5 active">
+                <a class="nav-link" href="<?= BASE_URL ?>">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item mr-5">
+                <a class="nav-link" href="<?= BASE_URL.'/kategori.php' ?>">Kategori</a>
+              </li>
+              <li class="nav-item mr-5">
+                <a class="nav-link" href="<?= BASE_URL.'/how-to-pay.php' ?>">Cara Pembelian</a>
+              </li>
+            </ul>
+          </div>
+        </div>
     </nav>
 </div>
