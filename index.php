@@ -1,63 +1,24 @@
 <?php 
 include "header.php";
 ?>
+<!-- Search Produk -->
 <div class="container">
-    <div class="jumbotron jumbotron-fluid bg-transparent">
-        <div class="container mt-5">
-          <form>
-                <label class="sr-only" for="inlineFormInputGroup">Search</label>
-                <div class="input-group w-50 m-auto">
-                  <div class="input-group-prepend">
-                    <div class="input-group-text"><i class="fa fa-search"></i></div>
-                  </div>
-                  <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search product">
-                </div>
-          </form>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-6 col-lg-3 mb-5">
-           <div class="card border-light">
-              <img src="https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-text text-center">Fashionable</p>
-                </div>
-           </div>
-        </div>
-        <div class="col-6 col-lg-3 mb-5">
-           <div class="card border-light">
-              <img src="https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-text text-center">Fashionable</p>
-                </div>
-          </div>
-        </div>
-        <div class="col-6 col-lg-3 mb-5"> 
-           <div class="card border-light">
-              <img src="https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-text text-center">Fashionable</p>
-                </div>
-           </div>
-        </div>
-    </div>
 
-<div class="container">
+<!-- Best Offer -->
+<div class="container best-offer">
   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
         <div class="row row-cols-1 row-cols-md-3">
-
           <?php  
           $sql   = "SELECT * FROM `produk` WHERE id_produk <= 3";
           $data  = mysqli_query($conn,$sql);
           while($list = mysqli_fetch_array($data)){ ?>
-            
               <div class="col mb-4">
                 <div class="card h-100">
                   <img
                     src="https://images.unsplash.com/photo-1510520434124-5bc7e642b61d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-                    class="card-img-top d-block w-100" alt="...">
+                    class="card-img-top d-block" style="width:auto;height:420px;" alt="...">
                   <div class="card-body">
                     <h5 class="card-title"><?= $list['nama_produk'] ?>
                     <?php 
@@ -71,10 +32,10 @@ include "header.php";
                     <?php 
                     if ($list['jumlah_produk'] > 0) { ?>
                       
-                    <a class="btn btn-primary btn-sm btn-block text-decoration-none text-uppercase" href="view/checkout.php?id=<?= $list['id_produk'] ?>">Order Now</a>
+                    <a class="btn btn-primary btn-sm btn-block text-decoration-none text-uppercase" href="view/order.php?id=<?= $list['id_produk'] ?>">Order Now</a>
                     <?php }else{ ?>
   
-                    <button class="btn btn-danger btn-sm btn-block disabled">Soldout</button>
+                    <a class="btn btn-danger btn-sm disabled btn-block" tabindex="-1" role="button" aria-disabled="true">Soldout</a>
                     <?php }
                     
                     ?>
@@ -85,79 +46,42 @@ include "header.php";
           } ?>
         </div>
       </div>
-      <!-- <div class="carousel-item">
+      <div class="carousel-item">
         <div class="row row-cols-1 row-cols-md-3">
+          <?php 
+          $sql    = "SELECT * FROM `produk` WHERE id_produk >= 4 AND id_produk <= 6";
+          $query  = mysqli_query($conn,$sql);
+          while ($list = mysqli_fetch_object($query)) { ?>
           <div class="col mb-4">
             <div class="card h-100">
               <img
                 src="https://images.unsplash.com/photo-1514315384763-ba401779410f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-                class="card-img-top" alt="...">
+                class="card-img-top" style="width:auto;height:420px;" alt="...">
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <button type="button" class="btn btn-primary btn-sm btn-block">Order Now</button>
+                <h5 class="card-title"><?= $list->nama_produk ?>
+                    <?php 
+                    if ($list->jumlah_produk > 0) { ?>
+                    <span class="badge badge-primary ml-3"><?= $list->jumlah_produk ?></span></h5>
+                    <?php }else{ ?>
+  
+                    <span class="badge badge-danger ml-3"><?= $list->jumlah_produk ?></span></h5>
+                    <?php }?>
+
+                    <?php 
+                    if ($list->jumlah_produk > 0) { ?>
+                      
+                    <a class="btn btn-primary btn-sm btn-block text-decoration-none text-uppercase" href="view/order.php?id=<?= $list->id_produk ?>">Order Now</a>
+                    <?php }else{ ?>
+  
+                    <a class="btn btn-danger btn-sm disabled btn-block" tabindex="-1" role="button" aria-disabled="true">Soldout</a>
+                    <?php }
+                    ?>
               </div>
             </div>
           </div>
-          <div class="col mb-4">
-            <div class="card h-100">
-              <img
-                src="https://images.unsplash.com/photo-1496840220025-4cbde0b9df65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-                class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <button type="button" class="btn btn-primary btn-sm btn-block">Order Now</button>
-              </div>
-            </div>
-          </div>
-          <div class="col mb-4">
-            <div class="card h-100">
-              <img
-                src="https://images.unsplash.com/photo-1502982899975-893c9cf39028?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-                class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <button type="button" class="btn btn-primary btn-sm btn-block">Order Now</button>
-              </div>
-            </div>
-          </div>
+          <?php } ?>
         </div>
-      </div> -->
-      <!-- <div class="carousel-item">
-        <div class="row row-cols-1 row-cols-md-3">
-        <div class="col mb-4">
-          <div class="card h-100">
-            <img
-              src="https://images.unsplash.com/photo-1496840220025-4cbde0b9df65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-              class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <button type="button" class="btn btn-primary btn-sm btn-block">Order Now</button>
-            </div>
-          </div>
-        </div>
-        <div class="col mb-4">
-          <div class="card h-100">
-            <img
-              src="https://images.unsplash.com/photo-1514315384763-ba401779410f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-              class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <button type="button" class="btn btn-primary btn-sm btn-block">Order Now</button>
-            </div>
-          </div>
-        </div>
-        <div class="col mb-4">
-          <div class="card h-100">
-            <img
-              src="https://images.unsplash.com/photo-1510520434124-5bc7e642b61d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-              class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <button type="button" class="btn btn-primary btn-sm btn-block">Order Now</button>
-            </div>
-          </div>
-        </div>
-      </div> -->
+      </div>
       </div>
     </div>
   </div>
@@ -175,69 +99,26 @@ include "header.php";
 </div>
 </div>
 
-<div class="container mt-5">
+<!-- BEST SELLERS -->
+<div class="container best-selling">
+    <h1 class="best-selling">Best Selling</h1>
     <div class="row row-cols-1 row-cols-md-3 col">
-        <div class="col mb-4">
+      <?php 
+      $sql    = "SELECT DISTINCT produk.nama_produk FROM `transaksi` INNER JOIN produk ON produk.id_produk = transaksi.id_produk";
+      $query  = mysqli_query($conn,$sql);
+      while ($list = mysqli_fetch_object($query)) { ?>
+        <div class="col col-lg-3 mb-4">
           <div class="card h-100">
-            <img src="https://images.unsplash.com/photo-1510520434124-5bc7e642b61d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="...">
+            <img src="https://images.unsplash.com/photo-1510520434124-5bc7e642b61d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" style="width:auto;height:200px;" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Baju 1</p>
+              <h5 class="card-title"><p class="text-center"><?= $list->nama_produk ?></p></h5>
             </div>
           </div>
         </div>
-        <div class="col mb-4">
-          <div class="card h-100">
-            <img src="https://images.unsplash.com/photo-1503185912284-5271ff81b9a8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Baju 2</p>
-            </div>
-          </div>
-        </div>
-        <div class="col mb-4">
-          <div class="card h-100">
-            <img src="https://images.unsplash.com/photo-1504276048855-f3d60e69632f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Baju 3</p>
-            </div>
-          </div>
-        </div>
-        <div class="col mb-4">
-          <div class="card h-100">
-            <img src="https://images.unsplash.com/photo-1514315384763-ba401779410f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Baju 4</p>
-            </div>
-          </div>
-        </div>
-        <div class="col mb-4">
-          <div class="card h-100">
-            <img src="https://images.unsplash.com/photo-1496840220025-4cbde0b9df65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Baju 4</p>
-            </div>
-          </div>
-        </div>
-
-    <div class="col mb-4">
-            <div class="card h-100">
-              <img src="https://images.unsplash.com/photo-1502982899975-893c9cf39028?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Baju 5</p>
-              </div>
-            </div>
-    </div>
+      <?php } ?>
   </div>
 </div>
-<?php
 
-
-?>
 <?php 
 include "footer.php";
 ?>
