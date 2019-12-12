@@ -3,21 +3,30 @@ include '../header.php';
 ?>
 <div class="container" style="margin-top:8%;">
     <div class="row">
+        <?php 
+        if (!$_GET['id']) {
+            header("location: ../index.php");
+            // jika tidak ada id yang di passing
+        }
+        $id = $_GET['id'];
+        $sql = "SELECT * FROM `produk` WHERE id_produk = $id";
+        $query = mysqli_query($conn,$sql);
+        while ($data = mysqli_fetch_array($query)) { ?>
         <div class="col-12 col-md-3">
             <div class="card border-light" style="width: 15rem;">
                 <img src="https://images.unsplash.com/photo-1446447058589-03a67b4b50c6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
                     class="card-img-top" alt="...">
                 <div class="card-body">
-                    <p class="card-text text-center">Baju Basket</p>
+                    <p class="card-text text-center"><?= $data['nama_produk'] ?></p>
                 </div>
             </div>
         </div>
         <div class="col-12 col-md-6">
             <form action="">
-                <h1>Baju Basket</h1><hr>
+                <h1><?= $data['nama_produk'] ?></h1><hr>
                 <div class="form-group">
                     <div class="row">
-                        <div class="col col-md-3">
+                        <div class="col col-md-5">
                             <label for="exampleFormControlInput1">Jumlah Baju</label>
                             <input type="number" min="1" class="form-control" id="inputbaju">
                         </div>
@@ -54,7 +63,7 @@ include '../header.php';
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Keterangan</label>
+                    <label for="exampleFormControlTextarea1">Keterangan untuk penjual</label>
                     <textarea class="form-control" id="keterangan" rows="3"></textarea>
                 </div>
                 <div class="form-group mb-auto">
@@ -63,48 +72,22 @@ include '../header.php';
                 </div>
             </form>
         </div>
+        <?php } ?>
         <div class="col-12 col-md-3 ml-auto">
             <ul class="list-unstyled">
+            <?php 
+            $sql = "SELECT * FROM `produk` LIMIT 5";
+            $query = mysqli_query($conn,$sql);
+            while ($data = mysqli_fetch_assoc($query)) { ?>
                 <li class="media mb-2">
                     <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
                         class="mr-3" style="width: 64px;height: 64px;" alt="...">
                     <div class="media-body">
-                        <h5 class="mt-0 mb-1">Jeans</h5>
-                        <p>Lorem ipsum dolor sit.</p>
+                        <h5 class="mt-0 mb-1"><?= $data['nama_produk'] ?></h5>
+                        <span class="badge badge-primary sizeku">Kategori <?= $data['id_kategori'] ?></span>
                     </div>
                 </li>
-                <li class="media mb-2">
-                    <img src="https://images.unsplash.com/photo-1558046635-d3fc71c0b051?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-                        class="mr-3" style="width: 64px;height: 64px;" alt="...">
-                    <div class="media-body">
-                        <h5 class="mt-0 mb-1">Longsleeve</h5>
-                        <p>Lorem ipsum dolor sit.</p>
-                    </div>
-                </li>
-                <li class="media mb-2">
-                    <img src="https://images.unsplash.com/photo-1571729024267-e0120826dfe6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-                        class="mr-3" style="width: 64px;height: 64px;" alt="...">
-                    <div class="media-body">
-                        <h5 class="mt-0 mb-1">Sweater</h5>
-                        <p>Lorem ipsum dolor sit.</p>
-                    </div>
-                </li>
-                <li class="media mb-2">
-                    <img src="https://images.unsplash.com/photo-1550898363-97b48aa83ebe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-                        class="mr-3" style="width: 64px;height: 64px;" alt="...">
-                    <div class="media-body">
-                        <h5 class="mt-0 mb-1">Jersey</h5>
-                        <p>Lorem ipsum dolor sit.</p>
-                    </div>
-                </li>
-                <li class="media mb-2">
-                    <img src="https://images.unsplash.com/photo-1556306535-0f09a537f0a3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-                        class="mr-3" style="width: 64px;height: 64px;" alt="...">
-                    <div class="media-body">
-                        <h5 class="mt-0 mb-1">Topi</h5>
-                        <p>Lorem ipsum dolor sit.</p>
-                    </div>
-                </li>
+            <?php } ?>
             </ul>
         </div>
     </div>
