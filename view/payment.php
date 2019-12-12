@@ -2,52 +2,52 @@
 include '../header.php';
 ?>
 <div class="container" style="margin-top:5%;">
-    <div class="row">
+    <div class="row justify-content-md-center">
         <div class="col col-md-6">
-            <h2>Details User</h2>
+            <h2 class="pay">Details User</h2>
             <hr>
             <form>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="inputEmail4">Nama Depan</label>
-                        <input type="email" class="form-control" id="inputEmail4">
+                        <label for="namadepan">Nama Depan</label>
+                        <input type="text" class="form-control" name="namadepan" id="namadepan">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="inputPassword4">Belakang</label>
-                        <input type="password" class="form-control" id="inputPassword4">
+                        <label for="namabelakang">Belakang</label>
+                        <input type="text" class="form-control" name="namabelakang" id="namabelakang">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inlineFormInputGroup">Telepon/HP</label>
+                    <label for="telepon">Telepon/HP</label>
                     <div class="input-group mb-2">
                         <div class="input-group-prepend">
                             <div class="input-group-text">+62</div>
                         </div>
-                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="81xxx">
+                        <input type="text" class="form-control" name="telepon" id="telepon" placeholder="81xxx">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputAddress">Alamat</label>
-                    <input type="text" class="form-control" id="inputAddress">
+                    <label for="alamat">Alamat</label>
+                    <input type="text" class="form-control" name="alamat" id="alamat">
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-4">
-                        <label for="inputCity">Provinsi</label>
-                        <input type="text" class="form-control" id="inputCity">
+                        <label for="provinsi">Provinsi</label>
+                        <input type="text" class="form-control" id="provinsi" name="provinsi">
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="inputState">Kota/Kab</label>
-                            <input type="text" class="form-control" id="inputCity">
+                        <label for="kota">Kota/Kab</label>
+                        <input type="text" class="form-control" id="kota" name="kota">
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="inputZip">Kecamatan</label>
-                        <input type="text" class="form-control" id="inputZip">
+                        <label for="kecamatan">Kecamatan</label>
+                        <input type="text" class="form-control" id="kecamatan" name="kecamatan">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-4">
-                        <label for="validationCustom04">Bank</label>
-                        <select class="custom-select" id="validationCustom04" required>
+                        <label for="pilihbank">Bank</label>
+                        <select class="custom-select" id="pilihbank" name="pilihbank" required>
                             <option selected disabled value="">Pilih Bank</option>
                             <option>Bank BCA</option>
                             <option>Bank BNI</option>
@@ -56,70 +56,27 @@ include '../header.php';
                         </select>
                     </div>
                     <div class="form-group col-md-8">
-                        <label for="inputCity">a/n</label>
-                        <input type="text" class="form-control" id="inputCity">
+                        <label for="atasnama">a/n</label>
+                        <input type="text" class="form-control" id="atasnama" name="atasnama">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inlineFormInputGroup">Voucher</label>
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text"><i class="fa fa-ticket"></i></div>
-                        </div>
-                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="voucher code">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="customFile">Upload Bukti Transfer</label>
+                    <label for="bukti">Upload Bukti Transfer</label>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="customFile">
-                        <label class="custom-file-label" for="customFile">Choose file</label>
+                        <input type="file" class="custom-file-input" name="bukti" id="bukti">
+                        <label class="custom-file-label" for="bukti">Choose file</label>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-success"><i class="fa fa-send"></i> Process</button>
-                <button type="submit" class="btn btn-default"><i class="fa fa-refresh"></i> Reset</button>
+                <div class="row pay">
+                    <div class="col col-md-8">
+                        <a href="<?= BASE_URL ?>/view/thanks.php" class="btn btn-success"><i class="fa fa-send"></i> Process</a>
+                        <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i> Reset </button></div>
+                    <div class="col col-md-4">
+                        <a href="<?= BASE_URL ?>/view/order.php" class="btn btn-block btn-warning mr-5"><i class="fa fa-arrow-left"></i> Back to Items</a>
+                    </div>
+                </div>
+                
             </form>
-        </div>
-        <div class="col col-md-6">
-            <h2>Detail Orders</h2>
-            <hr>
-            <table class="table table-borderless table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nama Barang</th>
-                        <th scope="col">Size</th>
-                        <th scope="col">Warna</th>
-                        <th scope="col">Jumlah</th>
-                        <th scope="col">Harga</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Baju Muslim</td>
-                        <td>L</td>
-                        <td>Putih</td>
-                        <td>1</td>
-                        <td>Rp. 50.000</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Celana Chinos</td>
-                        <td>XL</td>
-                        <td>Navy</td>
-                        <td>2</td>
-                        <td>RP. 35.000</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row" colspan="5">Total</th>
-                        <td>Rp. 85.000</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="alert alert-danger" role="alert">
-                <p><b>Transfer sejumlah Rp. 85.000</b> ke Rekening (BCA/BNI/BRI/MANDIRI)<br><b>a/n Paktoha</b></p>
-            </div>
         </div>
     </div>
 </div>
