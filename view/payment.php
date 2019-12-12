@@ -6,19 +6,19 @@ include '../header.php';
         <div class="col col-md-6">
             <h2 class="pay">Details User</h2>
             <hr>
-            <form>
+            <form action = "payment.php" method="post" name="view/thanks.php">
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="namadepan">Nama Depan</label>
+                        <label for="nama_depan">Nama Depan</label>
                         <input type="text" class="form-control" name="namadepan" id="namadepan">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="namabelakang">Belakang</label>
+                        <label for="nama_belakang">Belakang</label>
                         <input type="text" class="form-control" name="namabelakang" id="namabelakang">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="telepon">Telepon/HP</label>
+                    <label for="nohp">Telepon/HP</label>
                     <div class="input-group mb-2">
                         <div class="input-group-prepend">
                             <div class="input-group-text">+62</div>
@@ -56,7 +56,7 @@ include '../header.php';
                         </select>
                     </div>
                     <div class="form-group col-md-8">
-                        <label for="atasnama">a/n</label>
+                        <label for="atas_nama">a/n</label>
                         <input type="text" class="form-control" id="atasnama" name="atasnama">
                     </div>
                 </div>
@@ -69,10 +69,10 @@ include '../header.php';
                 </div>
                 <div class="row pay">
                     <div class="col col-md-8">
-                        <a href="<?= BASE_URL ?>/view/thanks.php" class="btn btn-success"><i class="fa fa-send"></i> Process</a>
-                        <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i> Reset </button></div>
+                        <a href="<?php echo base_url('view/thanks.php') ?>" class="btn btn-success"><i class="fa fa-send"></i> Process</a>
+                        <button type="Process" class="btn btn-default"><i class="fa fa-refresh"></i> Process </button></div>
                     <div class="col col-md-4">
-                        <a href="<?= BASE_URL ?>/view/order.php" class="btn btn-block btn-warning mr-5"><i class="fa fa-arrow-left"></i> Back to Items</a>
+                        <a href="<?php echo base_url('view/order.php') ?>" class="btn btn-block btn-warning mr-5"><i class="fa fa-arrow-left"></i> Back to Items</a>
                     </div>
                 </div>
                 
@@ -83,4 +83,32 @@ include '../header.php';
 
 <?php 
 include '../footer.php';
+?>
+
+<?php
+var dump ($_post)
+    if(isset($_POST['Submit'])) {
+        $nama_depan = $_POST['nama_depan'];
+        $nama_belakang = $_POST['nama_belakang'];
+        $nohp = $_POST['nohp'];
+        $alamat = $_POST['alamat'];
+        $provinsi = $_POST['provinsi'] ;
+        $kota = $_POST['kota'] ;
+        $kecamatan = $_POST['kecamatan'] ;
+        $atas_nama = $_POST['atas_nama'] ;
+ 
+        // include database connection file
+        include_once("config.php");
+
+        // Insert user data into table
+        $result = mysqli_query($mysqli, "INSERT INTO customer(nama_depan , nama_belakang , nohp , alamat , provinsi
+                                , kota , kecamatan , atas_nama) VALUES('$nama_depan' , '$nama_belakang' , '$nohp' , '$alamat'
+                                ,'$provinsi' ,'$kota' ,'$kecamatan' ,'$atas_nama')");
+
+        // Show message when user added
+        echo "User added successfully. <a href='view/thanks.php'>View Users</a>";
+    }
+    ?>
+
+
 ?>
